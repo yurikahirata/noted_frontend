@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-image: url("../images/background_img.jpg");
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  padding: 3em 4em;
+  background-color: rgba(255, 255, 255, 0.311);
+  border-radius: 10px;
+}
+
+.root-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.431);
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.734);
+  border-color: rgb(238, 201, 255);
+}
