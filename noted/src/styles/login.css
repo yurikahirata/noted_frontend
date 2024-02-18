@@ -15,7 +15,7 @@ body {
   border-radius: 10px;
 }
 
-.root-btn {
+.login-btn {
   display: block;
   width: 100%;
   margin-bottom: 1em;
@@ -32,4 +32,19 @@ button:hover {
 
 .a-btn {
   text-decoration: none;
+}
+
+.user-input {
+  display: block;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  padding: 1em 0.7em;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.8em;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgb(238, 201, 255);
 }
