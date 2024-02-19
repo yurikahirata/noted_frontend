@@ -1,48 +1,48 @@
-import '../styles/login.css';
+import '../styles/signup.css';
 import { useState } from 'react';
-import { Form, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from '../hooks/useAuth';
 
-const Login = () => {
+const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [incorrect, setIncorrect] = useState("");
+  const [taken, setTaken] = useState("");
   const { login } = useAuth();
 
   async function handleOnClick(e) {
     e.preventDefault();
     const body = { "username": username, "password": password };
 
-    const result = await fetch("http://localhost:8080/users/session", {
+    const result = await fetch("http://localhost:8080/users/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-
     if (result.status === 200)
       await login({ username });
     else
-      setIncorrect("something's incorrect...");
+      setTaken("sorry, that username is taken...");
 
   }
+
   return (
     <section className="section-content">
-      <h1>l o g i n</h1>
+      <h1>s i g n u p</h1>
       <div>
         <form>
           <input type="text" placeholder='username' className="user-input" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <p className="taken-username">{taken}</p>
           <input type="password" placeholder='password' className="user-input" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Link className="a-btn">
-            <button className="login-btn" onClick={handleOnClick}>➜</button>
+            <button className="signup-btn" onClick={handleOnClick}>➜</button>
           </Link>
           <Link to="/" className="a-btn">
             <button className="back-btn">back</button>
           </Link>
         </form>
-        <p className="incorrect-input">{incorrect}</p>
       </div>
     </section>
   )
 }
 
-export default Login;
+export default Signup;

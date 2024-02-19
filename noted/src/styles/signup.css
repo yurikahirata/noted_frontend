@@ -15,7 +15,7 @@ body {
   border-radius: 10px;
 }
 
-.login-btn {
+.signup-btn {
   display: block;
   width: 100%;
   margin-bottom: 1em;
@@ -23,6 +23,17 @@ body {
   border-radius: 10px;
   padding: 1em;
   background-color: rgba(255, 255, 255, 0.431);
+}
+
+.back-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.431);
+  font-size: 0.7em;
 }
 
 button:hover {
@@ -49,8 +60,7 @@ input:focus {
   border-color: rgb(238, 201, 255);
 }
 
-.incorrect-input {
+.taken-username {
   font-size: 0.7em;
   color: red;
-  width: inherit;
 }
