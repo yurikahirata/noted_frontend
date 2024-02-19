@@ -19,7 +19,7 @@ const Signup = () => {
       body: JSON.stringify(body),
     });
     if (result.status === 200)
-      await login({ username });
+      await login(username);
     else
       setTaken("sorry, that username is taken...");
 

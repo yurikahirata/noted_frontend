@@ -20,7 +20,7 @@ const Login = () => {
     });
 
     if (result.status === 200)
-      await login({ username });
+      await login(username);
     else
       setIncorrect("something's incorrect...");
 
