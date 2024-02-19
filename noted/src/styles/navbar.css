@@ -1,0 +1,23 @@
+.navbar {
+  width: 5rem;
+  height: 100vh;
+  position: fixed;
+  margin-left: 0.5rem;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-btn {
+  width: fit-content;
+  overflow: hidden;
+  padding: 15px 20px;
+  border-radius: 100%;
+  background-color: var(--bg-primary);
+  margin-bottom: 1em;
+}

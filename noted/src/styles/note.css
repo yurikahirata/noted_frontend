@@ -1,0 +1,21 @@
+.inline {
+  display: inline;
+}
+
+.note {
+  border: 1px solid transparent;
+  padding: 0.5em;
+  font-family: "Quicksand", sans-serif;
+  background-color: transparent;
+  align-self: flex-start;
+}
+
+.note-content {
+  margin-left: 1em;
+  padding: 0.5em 1em;
+}
+
+.note-content:focus {
+  outline: solid 1px rgb(238, 201, 255);
+  border-radius: 5px;
+}

@@ -7,7 +7,7 @@ export default function Root() {
     <section className="section-content">
       <h1>n o t e d .</h1>
       <div>
-        <Link to={`/login`} className="a-btn">
+        <Link to="/login" className="a-btn">
           <button className="root-btn">login</button>
         </Link>
         <Link to="/signup" className="a-btn">

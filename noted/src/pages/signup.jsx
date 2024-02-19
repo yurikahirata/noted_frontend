@@ -3,23 +3,25 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useAuth } from '../hooks/useAuth';
 
-const Signup = () => {
-  const [username, setUsername] = useState("");
+const Signup = ({ setUsername }) => {
+  const [thisUsername, setThisUsername] = useState("");
   const [password, setPassword] = useState("");
   const [taken, setTaken] = useState("");
   const { login } = useAuth();
 
   async function handleOnClick(e) {
     e.preventDefault();
-    const body = { "username": username, "password": password };
+    const body = { "username": thisUsername, "password": password };
 
     const result = await fetch("http://localhost:8080/users/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    if (result.status === 200)
-      await login(username);
+    if (result.status === 200) {
+      setUsername(thisUsername);
+      await login(thisUsername);
+    }
     else
       setTaken("sorry, that username is taken...");
 
@@ -30,7 +32,7 @@ const Signup = () => {
       <h1>s i g n u p</h1>
       <div>
         <form>
-          <input type="text" placeholder='username' className="user-input" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} />
           <p className="taken-username">{taken}</p>
           <input type="password" placeholder='password' className="user-input" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Link className="a-btn">
