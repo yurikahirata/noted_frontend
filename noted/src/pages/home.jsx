@@ -1,18 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { useAuth } from '../hooks/useAuth';
 import "../styles/home.css";
 import Navbar from '../components/navbar';
 
-const Home = ({ username }) => {
+const Home = ({ username, isHome, setIsHome }) => {
   const [content, setContent] = useState("");
-  // const { logout } = useAuth();
+
+  useEffect(() => {
+    setIsHome(true);
+  }, [])
 
   function handleOnKeyUp(e) {
     if (e.key === "Enter" || e.keyCode === 13) {
-      console.log("fetched?");
       const body = { username: username, content: content, collection: "unsorted" };
-      console.log(body);
-      fetch("http://localhost:8080/notes", {
+      fetch(`${process.env.API_URL}notes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -22,17 +23,11 @@ const Home = ({ username }) => {
     }
   }
 
-  // function handleOnClick(e) {
-  //   e.preventDefault();
-  //   logout();
-  // }
-
   return (
     <main className="home">
-      <Navbar />
+      <Navbar isHome={isHome} />
       <section className="input-section">
         <input type="text" className="main-input" placeholder="What're your thoughts?" autoFocus value={content} onChange={(e) => setContent(e.target.value)} onKeyUp={handleOnKeyUp} />
-        {/* <button onClick={handleOnClick}>Logout</button> */}
       </section >
 
     </main>

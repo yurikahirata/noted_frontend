@@ -8,12 +8,14 @@ const Login = ({ setUsername }) => {
   const [password, setPassword] = useState("");
   const [incorrect, setIncorrect] = useState("");
   const { login } = useAuth();
+  const [isLoggingIn, setIsLogginIn] = useState("");
 
   async function handleOnClick(e) {
     e.preventDefault();
     const body = { "username": thisUsername, "password": password };
 
-    const result = await fetch("http://localhost:8080/users/session", {
+    setIsLogginIn("Loading...");
+    const result = await fetch(`${process.env.API_URL}users/session`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -21,15 +23,19 @@ const Login = ({ setUsername }) => {
 
     if (result.status === 200) {
       setUsername(thisUsername);
+      setIsLogginIn("");
       await login(thisUsername);
     }
-    else
+    else {
       setIncorrect("something's incorrect...");
+      setIsLogginIn("");
+    }
 
   }
   return (
     <section className="section-content">
-      <h1>l o g i n</h1>
+      <h1 className="title">l o g i n</h1>
+      <p>{isLoggingIn}</p>
       <div>
         <form>
           <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} />

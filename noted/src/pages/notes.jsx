@@ -3,15 +3,18 @@ import Navbar from '../components/navbar';
 import "../styles/notes.css";
 import Note from '../components/note';
 
-const Notes = ({ username }) => {
+const Notes = ({ username, isHome, setIsHome }) => {
   const [unsortedNotes, setUnsortedNotes] = useState([]);
+  const [isLoading, setIsLoading] = useState("");
 
   useEffect(() => {
+    setIsHome(false);
+    setIsLoading("Loading...");
     async function fetchNotes() {
-      console.log(username);
-      const notes = await fetch(`http://localhost:8080/notes/${username}/unsorted`);
+      const notes = await fetch(`${process.env.API_URL}notes/${username}/unsorted`);
       const parsedNotes = await notes.json()
       setUnsortedNotes(parsedNotes);
+      setIsLoading("");
     }
 
     fetchNotes();
@@ -19,12 +22,13 @@ const Notes = ({ username }) => {
 
   return (
     <main className="notes">
-      <Navbar />
+      <Navbar isHome={isHome} />
       <section className="notes-section">
-        <h1>unsorted thoughts</h1>
+        <h1 className="title">unsorted thoughts</h1>
+        <p>{isLoading}</p>
         <div className="listed-notes">
           {unsortedNotes.map((note) => (
-            <Note key={note["_id"]} note={note} />
+            <Note key={note["_id"]} note={note} unsortedNotes={unsortedNotes} setUnsortedNotes={setUnsortedNotes} />
           ))}
         </div>
       </section>

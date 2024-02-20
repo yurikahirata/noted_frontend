@@ -8,6 +8,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    {/* <RouterProvider router={router} /> */}
   </React.StrictMode>,
 )
