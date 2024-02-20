@@ -1,0 +1,26 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+}
+
+.input-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-input {
+  min-width: 50vw;
+  min-height: 50vh;
+  background-color: transparent;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  text-align: center;
+  font-size: 2em;
+  margin-left: 5rem;
+}
+
+.main-input::placeholder {
+  color: rgba(146, 146, 146, 0.826);
+}

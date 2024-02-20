@@ -1,0 +1,47 @@
+.navbar {
+  width: 14em;
+  height: 100vh;
+  position: fixed;
+  margin: 1em 0 0 2em;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.navbar-btn {
+  width: fit-content;
+  overflow: hidden;
+  padding: 15px 20px;
+  border-radius: 100%;
+  background-color: var(--bg-primary);
+  margin-bottom: 1em;
+}
+
+
+#folders {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.folder {
+  border: 1px solid transparent;
+  border-radius: 1em;
+  background-color: var(--bg-primary);
+  padding: 0.7em 0.9em;
+  /* padding: 0.5em 0.3em; */
+  margin: 0 0 1em 1em;
+  /* margin-left: 1em;
+  margin-top: 0; */
+}
+
+.folder:hover {
+  background-color: rgba(255, 255, 255, 0.734);
+  border-color: rgb(238, 201, 255);
+}

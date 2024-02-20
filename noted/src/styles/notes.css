@@ -1,0 +1,28 @@
+.title {
+  margin-bottom: 0.3em;
+}
+
+.notes {
+  width: 100vw;
+  height: 100vh;
+}
+
+.notes-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-top: 3em;
+  align-items: center;
+}
+
+.note {
+  align-self: flex-start;
+}
+
+
+.listed-notes {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}

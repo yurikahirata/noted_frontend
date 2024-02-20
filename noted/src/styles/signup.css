@@ -7,6 +7,10 @@ body {
   background-image: url("../images/background_img.jpg");
 }
 
+.title {
+  margin-bottom: 0.5em;
+}
+
 .section-content {
   display: flex;
   flex-direction: column;
