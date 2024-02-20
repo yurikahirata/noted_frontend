@@ -1,0 +1,32 @@
+.collections {
+  display: flex;
+  flex-direction: column;
+}
+
+.collection {
+  border: 1px solid transparent;
+  border-radius: 1em;
+  background-color: var(--bg-primary);
+  padding: 0.7em 0.9em;
+  margin: 0 0 1em 1em;
+  box-shadow: 6px 7px 9px #00000012;
+}
+
+.collection:hover {
+  background-color: rgba(255, 255, 255, 0.734);
+  border-color: rgb(238, 201, 255);
+}
+
+.new-colllection-input {
+  margin-left: 1em;
+  background-color: transparent;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  width: 70%;
+}
+
+.new-colllection-input:focus {
+  outline: none;
+  border: none;
+}

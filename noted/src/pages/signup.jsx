@@ -23,6 +23,14 @@ const Signup = ({ setUsername }) => {
     if (result.status === 200) {
       setIsLoading("");
       setUsername(thisUsername);
+
+      const folderBody = { "username": thisUsername, "collectionName": "unsorted" };
+      fetch(`${process.env.API_URL}collections`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(folderBody),
+      });
+
       await login(thisUsername);
     }
     else {

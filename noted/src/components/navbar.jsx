@@ -1,9 +1,12 @@
 import "../styles/navbar.css"
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from '../hooks/useAuth';
+import Collections from "./collections";
 
-const Navbar = ({ isHome }) => {
+const Navbar = ({ isHome, collections, setCollection, setCollections, username }) => {
   const { logout } = useAuth();
+  const [isFolderClicked, setIsFolderClicked] = useState(false);
 
   function logoutHandleOnClick(e) {
     e.preventDefault();
@@ -11,22 +14,20 @@ const Navbar = ({ isHome }) => {
   }
 
   function foldersHandleOnClick() {
-
+    isFolderClicked ? setIsFolderClicked(false) : setIsFolderClicked(true);
   }
 
   return (
     <nav className="navbar">
       <ul className="navbar-nav">
-        {/* <li className="navbar-item"> */}
         <Link to={(isHome) ? "/notes" : "/home"}>
           <button className="navbar-btn">☆</button>
         </Link>
         <div id="folders">
           <button className="navbar-btn" onClick={foldersHandleOnClick}>❒</button>
-          <p className="folder">folder</p>
+          {isFolderClicked ? <Collections collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} isHome={isHome} /> : null}
         </div>
         <button className="navbar-btn" onClick={logoutHandleOnClick}>↲</button>
-        {/* </li> */}
       </ul>
     </nav>
   )

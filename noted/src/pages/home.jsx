@@ -3,11 +3,20 @@ import { useState, useEffect } from 'react';
 import "../styles/home.css";
 import Navbar from '../components/navbar';
 
-const Home = ({ username, isHome, setIsHome }) => {
+const Home = ({ username, isHome, setIsHome, collections, setCollections, collection, setCollection }) => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
+    async function fetchCollections() {
+      const results = await fetch(`${process.env.API_URL}collections/${username}`);
+      const parsedResults = await results.json();
+
+      setCollections(parsedResults);
+    }
+
+    fetchCollections();
     setIsHome(true);
+    setCollection("unsorted");
   }, [])
 
   function handleOnKeyUp(e) {
@@ -25,7 +34,8 @@ const Home = ({ username, isHome, setIsHome }) => {
 
   return (
     <main className="home">
-      <Navbar isHome={isHome} />
+      <p className="app-name">n o t e d .</p>
+      <Navbar isHome={isHome} collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} />
       <section className="input-section">
         <input type="text" className="main-input" placeholder="What're your thoughts?" autoFocus value={content} onChange={(e) => setContent(e.target.value)} onKeyUp={handleOnKeyUp} />
       </section >

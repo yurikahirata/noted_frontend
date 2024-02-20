@@ -1,37 +1,16 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 import "../styles/notes.css";
-import Note from '../components/note';
+import NoteContainer from '../components/noteContainer';
 
-const Notes = ({ username, isHome, setIsHome }) => {
-  const [unsortedNotes, setUnsortedNotes] = useState([]);
-  const [isLoading, setIsLoading] = useState("");
-
-  useEffect(() => {
-    setIsHome(false);
-    setIsLoading("Loading...");
-    async function fetchNotes() {
-      const notes = await fetch(`${process.env.API_URL}notes/${username}/unsorted`);
-      const parsedNotes = await notes.json()
-      setUnsortedNotes(parsedNotes);
-      setIsLoading("");
-    }
-
-    fetchNotes();
-  }, [])
+const Notes = ({ username, isHome, setIsHome, collections, collection, setCollection }) => {
+  const [notes, setNotes] = useState([]);
 
   return (
     <main className="notes">
-      <Navbar isHome={isHome} />
-      <section className="notes-section">
-        <h1 className="title">unsorted thoughts</h1>
-        <p>{isLoading}</p>
-        <div className="listed-notes">
-          {unsortedNotes.map((note) => (
-            <Note key={note["_id"]} note={note} unsortedNotes={unsortedNotes} setUnsortedNotes={setUnsortedNotes} />
-          ))}
-        </div>
-      </section>
+      <p className="app-name">n o t e d .</p>
+      <Navbar isHome={isHome} collections={collections} setCollection={setCollection} username={username} />
+      <NoteContainer collection={collection} setIsHome={setIsHome} username={username} notes={notes} setNotes={setNotes} />
     </main>
   )
 };

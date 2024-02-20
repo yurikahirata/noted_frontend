@@ -3,6 +3,12 @@
   height: 100vh;
 }
 
+.app-name {
+  position: absolute;
+  right: 1em;
+  top: 0.5em;
+}
+
 .input-section {
   height: 100vh;
   display: flex;
