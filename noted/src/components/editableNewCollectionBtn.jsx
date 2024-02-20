@@ -16,20 +16,12 @@ const EditableNewCollectionBtn = ({ setIsEditable, collectionNames, username, co
           body: JSON.stringify(body),
         })
 
-        // console.log("COLLECTIONS", collections);
         const parsedResult = await result.json();
-        // console.log(parsedResult);
         const newId = parsedResult["insertedId"];
         body["_id"] = newId;
 
-        // console.log("TO INSERT", body);
-        // const oldCollections = [...collections];
-        // console.log("OLD COLLECTION", oldCollections)
-        // const newCollections = oldCollections.push(body);
-        // console.log("NEW COLLECTION TO INSERT", newCollections)
-
         setCollections((prev) => {
-          const newArray = [...prev, body];
+          const newArray = [body, ...prev];
           return newArray;
         });
 
