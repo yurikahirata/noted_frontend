@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-image: url("../images/background_img.jpg");
+}
+
+.title {
+  margin-bottom: 0.5em;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  padding: 3em 4em;
+  background-color: rgba(255, 255, 255, 0.311);
+  border-radius: 10px;
+}
+
+.signup-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.431);
+}
+
+.back-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.431);
+  font-size: 0.7em;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.734);
+  border-color: rgb(238, 201, 255);
+}
+
+.a-btn {
+  text-decoration: none;
+}
+
+.user-input {
+  display: block;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  padding: 1em 0.7em;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.8em;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgb(238, 201, 255);
+}
+
+.taken-username {
+  font-size: 0.7em;
+  color: red;
+}

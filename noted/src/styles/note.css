@@ -1,0 +1,76 @@
+.app-name {
+  position: absolute;
+  right: 1em;
+  top: 0.5em;
+}
+
+.inline {
+  display: inline;
+}
+
+.note-container {
+  border: 1px solid transparent;
+  padding: 0.5em;
+  font-family: "Quicksand", sans-serif;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  /* align-items: baseline; */
+}
+
+.note-content-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.note {
+  width: 80%;
+  text-align: left;
+}
+
+.note-content {
+  /* margin-left: 1em; */
+  padding: 0em 1em;
+  flex-grow: 1;
+}
+
+.input-content {
+  margin-left: 1.1em;
+  font-size: 1em;
+  font-family: "Quicksand", sans-serif;
+  padding: 0.5em 1em;
+  border: 1px solid rgb(238, 201, 255);
+  border-radius: 5px;
+  background-color: var(--bg-primary);
+  width: 100%;
+}
+
+.input-content:focus {
+  outline: none;
+}
+
+/* .note-content:focus {
+  outline: solid 1px rgb(238, 201, 255);
+  border-radius: 5px;
+} */
+
+.btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.note-btn {
+  padding: 0.3em 0.5em;
+  background-color: transparent;
+}
+
+.note-btn:hover {
+  padding: 0.3em 0.5em;
+  background-color: var(--bg-primary);
+}
+
+.material-symbols-outlined {
+  font-size: 1em;
+}
