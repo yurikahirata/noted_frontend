@@ -1,3 +1,4 @@
+// USED IN note.jsx COMPONENT
 import "../styles/note.css";
 
 const NoteContent = ({ content, id }) => {

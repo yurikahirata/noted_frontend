@@ -1,18 +1,18 @@
+// USED IN noteContainer.jsx COMPONENT
 import { useState, useEffect } from "react";
 import "../styles/note.css";
 import EditNoteContent from "./editNoteContent";
 import NoteContent from "./noteContent";
+import MoveToCollectionBtn from "./moveToCollectionBtn";
 
-const Note = ({ note, notes, setNotes }) => {
+const Note = ({ note, notes, setNotes, collections }) => {
   const [id, setId] = useState("");
   const [content, setContent] = useState("");
-  // const [collection, setCollection] = useState("");
-  const [isEditable, setIsEditable] = useState(false);
+  const [isEditable, setIsEditable] = useState(false); // Toggles note content
 
   useEffect(() => {
     setId(note["_id"]);
     setContent(note["content"]);
-    // setCollection(note["collection"]);
   }, []);
 
   function deleteHandleOnClick() {
@@ -32,7 +32,6 @@ const Note = ({ note, notes, setNotes }) => {
 
   function editHandleOnClick() {
     if (!isEditable) {
-
       setIsEditable(true);
     } else {
       try {
@@ -55,13 +54,21 @@ const Note = ({ note, notes, setNotes }) => {
       <div className="note">
         <div className="note-content-container">
           <p className="inline">☆</p>
-          {(isEditable) ? <EditNoteContent content={content} setContent={setContent} id={id} /> : <NoteContent content={content} id={id} />}
-          {/* <p className="inline note-content" id={`note-content${id}`}>{content}</p> */}
+          {(isEditable) ? <EditNoteContent content={content} setContent={setContent} id={id} editHandleOnClick={editHandleOnClick} /> : <NoteContent content={content} id={id} />}
         </div>
       </div>
       <div className="btn-container">
         <button className="note-btn" onClick={editHandleOnClick}><span className="material-symbols-outlined">edit</span></button>
         <button className="note-btn" onClick={deleteHandleOnClick}><span className="material-symbols-outlined">delete</span></button>
+        <div className="dropdown">
+          <button className="dropbtn">⇰</button>
+          <div className="dropdown-content">
+            {collections.map((collection) => (
+              (note["collection"] !== collection["collectionName"]) ? <MoveToCollectionBtn key={collection["_id"]} keyId={collection["_id"]} collectionName={collection["collectionName"]} thisNote={note} notes={notes} setNotes={setNotes} /> : null
+            ))}
+          </div>
+        </div>
+
       </div>
     </section >
   )

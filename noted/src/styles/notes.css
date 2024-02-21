@@ -2,6 +2,21 @@
   margin-bottom: 0.3em;
 }
 
+.material-symbols-outlined {
+  font-size: 1em;
+  padding: 0;
+}
+
+.edit-folder-btn {
+  display: inline;
+  padding: 0.4em 0.6em;
+  background-color: transparent;
+}
+
+.edit-folder-btn:hover {
+  background-color: var(--bg-primary);
+}
+
 .notes {
   width: 100vw;
   height: 100vh;

@@ -5,6 +5,7 @@
   text-align: center;
   font-family: "Quicksand", sans-serif;
   --bg-primary: rgba(255, 255, 255, 0.311);
+  --outline-primary: rgb(238, 201, 255)
 }
 
 button {

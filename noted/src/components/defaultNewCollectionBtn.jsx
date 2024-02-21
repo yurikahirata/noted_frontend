@@ -1,9 +1,9 @@
+// USED IN collections.jsx COMPONENT
 import "../styles/collections.css";
 
-const DefaultNewCollectionBtn = ({ setIsEditable, setCollection }) => {
+const DefaultNewCollectionBtn = ({ setIsEditable }) => {
   function handleOnClick() {
     setIsEditable(true);
-    //setCollection("unsorted");
   }
 
   return (

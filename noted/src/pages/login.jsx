@@ -6,15 +6,16 @@ import { useAuth } from '../hooks/useAuth';
 const Login = ({ setUsername }) => {
   const [thisUsername, setThisUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [incorrect, setIncorrect] = useState("");
+  const [incorrect, setIncorrect] = useState(""); // Text if username or password is incorrect
   const { login } = useAuth();
-  const [isLoggingIn, setIsLoggingIn] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(""); // Text while fetching
 
   async function handleOnClick(e) {
     e.preventDefault();
     const body = { "username": thisUsername, "password": password };
 
     setIsLoggingIn("Loading...");
+
     try {
       const result = await fetch(`${process.env.API_URL}/users/session`, {
         method: "POST",
@@ -34,7 +35,6 @@ const Login = ({ setUsername }) => {
     } catch (e) {
       setIsLoggingIn("something went wrong...");
     }
-
   }
   return (
     <section className="section-content">
@@ -42,7 +42,7 @@ const Login = ({ setUsername }) => {
       <p>{isLoggingIn}</p>
       <div>
         <form>
-          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} />
+          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} autoFocus />
           <input type="password" placeholder='password' className="user-input" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Link className="a-btn">
             <button className="login-btn" onClick={handleOnClick}>➜</button>
