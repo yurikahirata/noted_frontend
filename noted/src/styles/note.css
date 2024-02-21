@@ -1,3 +1,9 @@
+.app-name {
+  position: absolute;
+  right: 1em;
+  top: 0.5em;
+}
+
 .inline {
   display: inline;
 }

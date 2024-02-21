@@ -8,27 +8,31 @@ const Login = ({ setUsername }) => {
   const [password, setPassword] = useState("");
   const [incorrect, setIncorrect] = useState("");
   const { login } = useAuth();
-  const [isLoggingIn, setIsLogginIn] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState("");
 
   async function handleOnClick(e) {
     e.preventDefault();
     const body = { "username": thisUsername, "password": password };
 
-    setIsLogginIn("Loading...");
-    const result = await fetch(`${process.env.API_URL}users/session`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    setIsLoggingIn("Loading...");
+    try {
+      const result = await fetch(`${process.env.API_URL}/users/session`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
-    if (result.status === 200) {
-      setUsername(thisUsername);
-      setIsLogginIn("");
-      await login(thisUsername);
-    }
-    else {
-      setIncorrect("something's incorrect...");
-      setIsLogginIn("");
+      if (result.status === 200) {
+        setUsername(thisUsername);
+        setIsLoggingIn("");
+        await login(thisUsername);
+      }
+      else {
+        setIncorrect("something's incorrect...");
+        setIsLoggingIn("");
+      }
+    } catch (e) {
+      setIsLoggingIn("something went wrong...");
     }
 
   }

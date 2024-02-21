@@ -12,6 +12,8 @@ import { AuthProvider } from './hooks/useAuth.jsx';
 const App = () => {
   const [username, setUsername] = useState("");
   const [isHome, setIsHome] = useState(true);
+  const [collections, setCollections] = useState([]);
+  const [collection, setCollection] = useState("unsorted");
 
   return (
     <AuthProvider>
@@ -21,11 +23,16 @@ const App = () => {
         <Route path="signup" element={<Signup setUsername={setUsername} />} />
         <Route path="home" element={
           <ProtectedRoute>
-            <Home username={username} isHome={isHome} setIsHome={setIsHome} />
+            <Home username={username} isHome={isHome} setIsHome={setIsHome} collections={collections} setCollections={setCollections} collection={collection} setCollection={setCollection} />
           </ProtectedRoute>
         }
         />
-        <Route path="notes" element={<Notes username={username} isHome={isHome} setIsHome={setIsHome} />} />
+        <Route path="notes" element={
+          <ProtectedRoute>
+            <Notes username={username} isHome={isHome} setIsHome={setIsHome} collections={collections} setCollections={setCollections} collection={collection} setCollection={setCollection} />
+          </ProtectedRoute>
+        }
+        />
       </Routes>
     </AuthProvider>
   )
