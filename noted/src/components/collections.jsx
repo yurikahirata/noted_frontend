@@ -7,10 +7,11 @@ import EditableNewCollectionBtn from "./editableNewCollectionBtn";
 const Collections = ({ collections, setCollection, setCollections, username, isHome }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [collectionNames, setCollectionNames] = useState([]);
-  // const unsortedCollection = [];
+  const [unsortedCollection, setUnsortedCollection] = useState({});
+  let unsortedCollectionId;
 
   useEffect(() => {
-    // let unsortedIndex;
+    let unsortedIndex;
 
     for (const collection of collections) {
       setCollectionNames((prev) => {
@@ -18,20 +19,24 @@ const Collections = ({ collections, setCollection, setCollections, username, isH
         return newArray;
       })
 
-      // if (collection["collectionName"] === "unsorted") {
-      //   unsortedIndex = collections.indexOf(collection);
-      // }
+      if (collection["collectionName"] === "unsorted") {
+        unsortedIndex = collections.indexOf(collection);
+      }
     }
 
-    // unsortedCollection.push(collections[unsortedIndex]);
-    // unsortedCollection.push(collections[unsortedIndex]["_id"]);
+    setUnsortedCollection((prev) => {
+      const newObject = Object.assign({}, collections[unsortedIndex]);
+      return newObject;
+    })
+    unsortedCollectionId = unsortedCollection["_id"];
+
   }, [])
 
   return (
     <div className="collections">
-      {/* <CollectionButton collection={unsortedCollection[0]} setCollection={setCollection} key={unsortedCollection[1]} isHome={isHome} /> */}
+      <CollectionButton collection={unsortedCollection} setCollection={setCollection} key={unsortedCollectionId} isHome={isHome} />
       {collections.map((collection) => (
-        <CollectionButton collection={collection} setCollection={setCollection} key={collection["_id"]} isHome={isHome} />
+        (collection["collectionName"] !== "unsorted") ? <CollectionButton collection={collection} setCollection={setCollection} key={collection["_id"]} isHome={isHome} /> : null
       ))}
       {!isEditable ? <DefaultNewCollectionBtn setIsEditable={setIsEditable} setCollection={setCollection} /> : <EditableNewCollectionBtn setIsEditable={setIsEditable} collectionNames={collectionNames} setCollectionNames={setCollectionNames} username={username} collections={collections} setCollections={setCollections} setCollection={setCollection} />}
     </div>
