@@ -113,7 +113,7 @@ const NoteContainer = ({ collection, setCollection, collections, setCollections,
       {/* {isTitleEditable ? <EditableNotesTitle collection={collection} setCollection={setCollection} /> : <DefaultNotesTitle collection={collection} />} */}
       <div>
         {/* <button className="edit-folder-btn"><span className="material-symbols-outlined" onClick={editTitleHandleOnClick}>edit</span></button> */}
-        <button className="edit-folder-btn" onClick={deleteCollectionOnClick}><span className="material-symbols-outlined">delete</span></button>
+        {(collection !== "unsorted") ? <button className="edit-folder-btn" onClick={deleteCollectionOnClick}><span className="material-symbols-outlined">delete</span></button> : null}
       </div>
       <p>{isLoading}</p>
       <button className="add-note" onClick={addNoteHandleOnClick}>+</button>
