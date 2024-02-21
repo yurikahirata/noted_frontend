@@ -17,7 +17,7 @@ const Notes = ({ username, isHome, setIsHome, collections, collection, setCollec
     <main className="notes">
       <p className="app-name">n o t e d .</p>
       <Navbar isHome={isHome} collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} isCollectionsOpen={isCollectionsOpen} setIsCollectionsOpen={setIsCollectionsOpen} />
-      <NoteContainer collection={collection} collections={collections} setIsHome={setIsHome} username={username} notes={notes} setNotes={setNotes} />
+      <NoteContainer collection={collection} setCollection={setCollection} collections={collections} setCollections={setCollections} setIsHome={setIsHome} username={username} notes={notes} setNotes={setNotes} />
     </main>
   )
 };
