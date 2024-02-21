@@ -34,7 +34,6 @@ const Login = ({ setUsername }) => {
     } catch (e) {
       setIsLoggingIn("something went wrong...");
     }
-
   }
   return (
     <section className="section-content">

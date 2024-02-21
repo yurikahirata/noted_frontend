@@ -6,7 +6,6 @@ import NoteContainer from '../components/noteContainer';
 
 const Notes = ({ username, isHome, setIsHome, collections, collection, setCollection, setCollections, isCollectionsOpen, setIsCollectionsOpen }) => {
   const [notes, setNotes] = useState([]);
-  // const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {

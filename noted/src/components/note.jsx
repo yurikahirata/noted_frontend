@@ -7,13 +7,11 @@ import MoveToCollectionBtn from "./moveToCollectionBtn";
 const Note = ({ note, notes, setNotes, collections }) => {
   const [id, setId] = useState("");
   const [content, setContent] = useState("");
-  // const [collection, setCollection] = useState("");
   const [isEditable, setIsEditable] = useState(false);
 
   useEffect(() => {
     setId(note["_id"]);
     setContent(note["content"]);
-    //setCollection(note["collection"]);
   }, []);
 
   function deleteHandleOnClick() {
@@ -33,7 +31,6 @@ const Note = ({ note, notes, setNotes, collections }) => {
 
   function editHandleOnClick() {
     if (!isEditable) {
-
       setIsEditable(true);
     } else {
       try {
@@ -56,7 +53,7 @@ const Note = ({ note, notes, setNotes, collections }) => {
       <div className="note">
         <div className="note-content-container">
           <p className="inline">☆</p>
-          {(isEditable) ? <EditNoteContent content={content} setContent={setContent} id={id} /> : <NoteContent content={content} id={id} />}
+          {(isEditable) ? <EditNoteContent content={content} setContent={setContent} id={id} editHandleOnClick={editHandleOnClick} /> : <NoteContent content={content} id={id} />}
         </div>
       </div>
       <div className="btn-container">

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import '../styles/root.css';
 
-
 export default function Root() {
   return (
     <section className="section-content">

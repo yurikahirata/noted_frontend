@@ -28,8 +28,8 @@ const Collections = ({ collections, setCollection, setCollections, username, isH
       const newObject = Object.assign({}, collections[unsortedIndex]);
       return newObject;
     })
-    unsortedCollectionId = unsortedCollection["_id"];
 
+    unsortedCollectionId = unsortedCollection["_id"];
   }, [])
 
   return (

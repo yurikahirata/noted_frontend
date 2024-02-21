@@ -33,12 +33,13 @@ const NoteContainer = ({ collection, setCollection, collections, setCollections,
       }
     }
 
-    //oldCollectionName = collection;
+    //oldCollectionName = collection; --> move this to own useEffect that only runs on initial?
   }, [collection]);
 
   // Add new note in folder
   async function addNoteHandleOnClick() {
     const body = { "username": username, "content": "", "collection": collection };
+
     const result = await fetch(`${process.env.API_URL}/notes`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -83,24 +84,26 @@ const NoteContainer = ({ collection, setCollection, collections, setCollections,
   // }
 
   async function deleteCollectionOnClick() {
-    try {
-      fetch(`${process.env.API_URL}/collections/${collectionId}`, {
-        method: "DELETE"
-      });
+    if (confirm("fr?")) {
+      try {
+        fetch(`${process.env.API_URL}/collections/${collectionId}`, {
+          method: "DELETE"
+        });
 
-      fetch(`${process.env.API_URL}/notes/${username}/${collection}`, {
-        method: "DELETE"
-      });
+        fetch(`${process.env.API_URL}/notes/${username}/${collection}`, {
+          method: "DELETE"
+        });
 
-      await setCollections((prev) => {
-        const newArray = prev.filter((thisCollection) => thisCollection["collectionName"] != collection);
-        return newArray;
-      });
+        await setCollections((prev) => {
+          const newArray = prev.filter((thisCollection) => thisCollection["collectionName"] != collection);
+          return newArray;
+        });
 
-      const newView = collections[collections.length - 1]["collectionName"];
-      setCollection(newView);
-    } catch (e) {
-      console.log(e);
+        const newView = collections[collections.length - 1]["collectionName"];
+        await setCollection(newView);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 

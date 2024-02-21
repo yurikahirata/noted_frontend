@@ -15,11 +15,13 @@ const MoveToCollectionBtn = ({ keyId, collectionName, thisNote, notes, setNotes 
       setNotes((prev) => {
         const newArray = [...prev];
         let indexToSplice;
+
         for (const noteIndex in newArray) {
           if (newArray[noteIndex]["_id"] === updatedNote["_id"]) {
             indexToSplice = noteIndex;
           }
         }
+
         newArray.splice(indexToSplice, 1);
         return newArray;
       });
