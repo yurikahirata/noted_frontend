@@ -1,3 +1,4 @@
+// USED IN note.jsx COMPONENT
 const MoveToCollectionBtn = ({ keyId, collectionName, thisNote, notes, setNotes }) => {
 
   async function handleOnClick() {

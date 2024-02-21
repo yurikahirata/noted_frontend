@@ -1,3 +1,4 @@
+// USED IN navbar.jsx COMPONENT
 import { useState, useEffect } from "react";
 import "../styles/collections.css";
 import CollectionButton from "./collectionButton";
@@ -5,8 +6,8 @@ import DefaultNewCollectionBtn from "./defaultNewCollectionBtn";
 import EditableNewCollectionBtn from "./editableNewCollectionBtn";
 
 const Collections = ({ collections, setCollection, setCollections, username, isHome }) => {
-  const [isEditable, setIsEditable] = useState(false);
-  const [collectionNames, setCollectionNames] = useState([]);
+  const [isEditable, setIsEditable] = useState(false); // Toggles new collection button
+  const [collectionNames, setCollectionNames] = useState([]); // Array with all collection names
   const [unsortedCollection, setUnsortedCollection] = useState({});
   let unsortedCollectionId;
 

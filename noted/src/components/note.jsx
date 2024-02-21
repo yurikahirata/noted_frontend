@@ -1,3 +1,4 @@
+// USED IN noteContainer.jsx COMPONENT
 import { useState, useEffect } from "react";
 import "../styles/note.css";
 import EditNoteContent from "./editNoteContent";
@@ -7,7 +8,7 @@ import MoveToCollectionBtn from "./moveToCollectionBtn";
 const Note = ({ note, notes, setNotes, collections }) => {
   const [id, setId] = useState("");
   const [content, setContent] = useState("");
-  const [isEditable, setIsEditable] = useState(false);
+  const [isEditable, setIsEditable] = useState(false); // Toggles note content
 
   useEffect(() => {
     setId(note["_id"]);

@@ -1,10 +1,11 @@
+// USED IN collections.jsx COMPONENT
 import { useState } from "react";
 import "../styles/collections.css";
 
 const EditableNewCollectionBtn = ({ setIsEditable, collectionNames, setCollectionNames, username, setCollections, setCollection }) => {
-  const [collectionName, setCollectionName] = useState("");
+  const [collectionName, setCollectionName] = useState(""); // Name of new collection
 
-  function handleOnKeyUp(e) {
+  function handleOnKeyUp(e) { // Add new collection on enter
     if (e.key === "Enter" || e.keyCode === 13) {
       handleOnBlur();
     }

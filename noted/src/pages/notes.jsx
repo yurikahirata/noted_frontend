@@ -5,11 +5,11 @@ import "../styles/notes.css";
 import NoteContainer from '../components/noteContainer';
 
 const Notes = ({ username, isHome, setIsHome, collections, collection, setCollection, setCollections, isCollectionsOpen, setIsCollectionsOpen }) => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState([]); // Notes in this collection
   const location = useLocation();
 
   useEffect(() => {
-    (location.state && location.state.isCollectionsOpened === true) ? setIsCollectionsOpen(true) : null;
+    (location.state && location.state.isCollectionsOpened === true) ? setIsCollectionsOpen(true) : null; // Check if collections was open before navigated
   }, [])
 
   return (

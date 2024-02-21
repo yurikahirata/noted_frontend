@@ -1,3 +1,4 @@
+// USED IN collections.jsx COMPONENT
 import "../styles/collections.css";
 
 const DefaultNewCollectionBtn = ({ setIsEditable }) => {

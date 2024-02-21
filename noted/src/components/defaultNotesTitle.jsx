@@ -1,3 +1,4 @@
+// USED IN noteContainer.jsx COMPONENT
 import "../styles/notes.css";
 
 const DefaultNotesTitle = ({ collection }) => {

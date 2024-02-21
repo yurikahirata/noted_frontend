@@ -1,3 +1,4 @@
+// USED IN home.jsx AND notes.jsx PAGE
 import "../styles/navbar.css"
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -6,10 +7,10 @@ import Collections from "./collections";
 
 const Navbar = ({ isHome, collections, setCollection, setCollections, username, isCollectionsOpen, setIsCollectionsOpen }) => {
   const { logout } = useAuth();
-  const [isFolderClicked, setIsFolderClicked] = useState(false);
+  const [isCollectionsClicked, setIsCollectionsClicked] = useState(false); // Toggles list of collections
 
   useEffect(() => {
-    isCollectionsOpen ? setIsFolderClicked(true) : null;
+    isCollectionsOpen ? setIsCollectionsClicked(true) : null;
   }, [])
 
   function logoutHandleOnClick(e) {
@@ -17,12 +18,12 @@ const Navbar = ({ isHome, collections, setCollection, setCollections, username, 
     logout();
   }
 
-  function foldersHandleOnClick() {
-    if (isFolderClicked) {
-      setIsFolderClicked(false);
+  function collectionsHandleOnClick() {
+    if (isCollectionsClicked) {
+      setIsCollectionsClicked(false);
       setIsCollectionsOpen(false);
     } else {
-      setIsFolderClicked(true);
+      setIsCollectionsClicked(true);
       setIsCollectionsOpen(true);
     }
   }
@@ -33,9 +34,9 @@ const Navbar = ({ isHome, collections, setCollection, setCollections, username, 
         <Link to={(isHome) ? "/notes" : "/home"}>
           <button className="navbar-btn">☆</button>
         </Link>
-        <div id="folders">
-          <button className="navbar-btn" onClick={foldersHandleOnClick}>❒</button>
-          {isFolderClicked ? <Collections collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} isHome={isHome} /> : null}
+        <div id="collections">
+          <button className="navbar-btn" onClick={collectionsHandleOnClick}>❒</button>
+          {isCollectionsClicked ? <Collections collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} isHome={isHome} /> : null}
         </div>
         <button className="navbar-btn" onClick={logoutHandleOnClick}>↲</button>
       </ul>

@@ -1,3 +1,4 @@
+// USED IN notes.jsx PAGE
 import { useState, useEffect } from "react";
 import "../styles/notes.css";
 import Note from "./note";
@@ -6,13 +7,14 @@ import EditableNotesTitle from "./editableNotesTitle";
 
 const NoteContainer = ({ collection, setCollection, collections, setCollections, setIsHome, username, notes, setNotes }) => {
   let oldCollectionName;
-  const [isLoading, setIsLoading] = useState("");
+  const [isLoading, setIsLoading] = useState(""); // Text while fetching
   // const [isTitleEditable, setIsTitleEditable] = useState(false);
   const [collectionId, setCollectionId] = useState("");
 
   useEffect(() => {
     setIsHome(false);
     setIsLoading("Loading...");
+
     async function fetchNotes() {
       try {
         const notes = await fetch(`${process.env.API_URL}/notes/${username}/${collection}`);

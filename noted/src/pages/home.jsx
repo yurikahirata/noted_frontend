@@ -3,7 +3,7 @@ import "../styles/home.css";
 import Navbar from '../components/navbar';
 
 const Home = ({ username, isHome, setIsHome, collections, setCollections, setCollection, setIsCollectionsOpen }) => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(""); // New note content
 
   useEffect(() => {
     async function fetchCollections() {

@@ -6,9 +6,9 @@ import { useAuth } from '../hooks/useAuth';
 const Signup = ({ setUsername }) => {
   const [thisUsername, setThisUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [taken, setTaken] = useState("");
+  const [taken, setTaken] = useState(""); // Text if username is taken
   const { login } = useAuth();
-  const [isLoading, setIsLoading] = useState("");
+  const [isLoading, setIsLoading] = useState(""); // Text while fetching
 
   async function handleOnClick(e) {
     e.preventDefault();
