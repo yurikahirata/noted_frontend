@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/notes.css";
 import Note from "./note";
 
-const NoteContainer = ({ collection, setIsHome, username, notes, setNotes }) => {
+const NoteContainer = ({ collection, collections, setIsHome, username, notes, setNotes }) => {
   // const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState("");
 
@@ -45,7 +45,7 @@ const NoteContainer = ({ collection, setIsHome, username, notes, setNotes }) => 
       <button className="add-note" onClick={handleOnClick}>+</button>
       <div className="listed-notes">
         {notes.map((note) => (
-          <Note key={note["_id"]} note={note} notes={notes} setNotes={setNotes} />
+          <Note key={note["_id"]} note={note} notes={notes} setNotes={setNotes} collections={collections} />
         ))}
       </div>
     </section>

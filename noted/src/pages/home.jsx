@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import "../styles/home.css";
 import Navbar from '../components/navbar';
 
-const Home = ({ username, isHome, setIsHome, collections, setCollections, collection, setCollection }) => {
+const Home = ({ username, isHome, setIsHome, collections, setCollections, collection, setCollection, isCollectionsOpen, setIsCollectionsOpen }) => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
@@ -35,9 +35,9 @@ const Home = ({ username, isHome, setIsHome, collections, setCollections, collec
   return (
     <main className="home">
       <p className="app-name">n o t e d .</p>
-      <Navbar isHome={isHome} collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} isCollectionsOpen={false} />
+      <Navbar isHome={isHome} collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} isCollectionsOpen={false} setIsCollectionsOpen={setIsCollectionsOpen} />
       <section className="input-section">
-        <input type="text" className="main-input" placeholder="What're your thoughts?" autoFocus value={content} onChange={(e) => setContent(e.target.value)} onKeyUp={handleOnKeyUp} />
+        <input type="text" className="main-input" placeholder="What're you thinking?" autoFocus value={content} onChange={(e) => setContent(e.target.value)} onKeyUp={handleOnKeyUp} />
       </section >
 
     </main>

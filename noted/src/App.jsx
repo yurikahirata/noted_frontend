@@ -14,6 +14,7 @@ const App = () => {
   const [isHome, setIsHome] = useState(true);
   const [collections, setCollections] = useState([]);
   const [collection, setCollection] = useState("unsorted");
+  const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
 
   return (
     <AuthProvider>
@@ -23,13 +24,13 @@ const App = () => {
         <Route path="signup" element={<Signup setUsername={setUsername} />} />
         <Route path="home" element={
           <ProtectedRoute>
-            <Home username={username} isHome={isHome} setIsHome={setIsHome} collections={collections} setCollections={setCollections} collection={collection} setCollection={setCollection} />
+            <Home username={username} isHome={isHome} setIsHome={setIsHome} collections={collections} setCollections={setCollections} collection={collection} setCollection={setCollection} isCollectionsOpen={isCollectionsOpen} setIsCollectionsOpen={setIsCollectionsOpen} />
           </ProtectedRoute>
         }
         />
         <Route path="notes" element={
           <ProtectedRoute>
-            <Notes username={username} isHome={isHome} setIsHome={setIsHome} collections={collections} setCollections={setCollections} collection={collection} setCollection={setCollection} />
+            <Notes username={username} isHome={isHome} setIsHome={setIsHome} collections={collections} setCollections={setCollections} collection={collection} setCollection={setCollection} isCollectionsOpen={isCollectionsOpen} setIsCollectionsOpen={setIsCollectionsOpen} />
           </ProtectedRoute>
         }
         />

@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from '../hooks/useAuth';
 import Collections from "./collections";
 
-const Navbar = ({ isHome, collections, setCollection, setCollections, username, isCollectionsOpen }) => {
+const Navbar = ({ isHome, collections, setCollection, setCollections, username, isCollectionsOpen, setIsCollectionsOpen }) => {
   const { logout } = useAuth();
   const [isFolderClicked, setIsFolderClicked] = useState(false);
 
   useEffect(() => {
     isCollectionsOpen ? setIsFolderClicked(true) : null;
-  })
+  }, [])
 
   function logoutHandleOnClick(e) {
     e.preventDefault();
@@ -18,7 +18,13 @@ const Navbar = ({ isHome, collections, setCollection, setCollections, username, 
   }
 
   function foldersHandleOnClick() {
-    isFolderClicked ? setIsFolderClicked(false) : setIsFolderClicked(true);
+    if (isFolderClicked) {
+      setIsFolderClicked(false);
+      setIsCollectionsOpen(false);
+    } else {
+      setIsFolderClicked(true);
+      setIsCollectionsOpen(true);
+    }
   }
 
   return (

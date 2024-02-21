@@ -42,7 +42,7 @@ const Login = ({ setUsername }) => {
       <p>{isLoggingIn}</p>
       <div>
         <form>
-          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} />
+          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} autoFocus />
           <input type="password" placeholder='password' className="user-input" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Link className="a-btn">
             <button className="login-btn" onClick={handleOnClick}>➜</button>

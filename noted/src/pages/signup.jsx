@@ -46,7 +46,7 @@ const Signup = ({ setUsername }) => {
       <p>{isLoading}</p>
       <div>
         <form>
-          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} />
+          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} autoFocus />
           <p className="taken-username">{taken}</p>
           <input type="password" placeholder='password' className="user-input" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Link className="a-btn">
