@@ -1,17 +1,21 @@
+// USED IN collections.jsx COMPONENT
 import { useState } from "react";
 import "../styles/collections.css";
 
-const EditableNewCollectionBtn = ({ setIsEditable, collectionNames, setCollectionNames, username, collections, setCollections, setCollection }) => {
-  const [collectionName, setCollectionName] = useState("");
+const EditableNewCollectionBtn = ({ setIsEditable, collectionNames, setCollectionNames, username, setCollections, setCollection }) => {
+  const [collectionName, setCollectionName] = useState(""); // Name of new collection
 
-  function handleOnKeyUp(e) {
+  function handleOnKeyUp(e) { // Add new collection on enter
     if (e.key === "Enter" || e.keyCode === 13) {
       handleOnBlur();
     }
   }
 
   async function handleOnBlur() {
-    if (!collectionNames.includes(collectionName) && collectionName.length > 0) {
+    const regex = new RegExp('^[a-zA-Z0-9-.~\w\s]*$');
+
+    if (!collectionNames.includes(collectionName) && collectionName.length > 0 && regex.test(collectionName)) {
+
       try {
         const body = { "collectionName": collectionName, "username": username };
 
@@ -35,12 +39,14 @@ const EditableNewCollectionBtn = ({ setIsEditable, collectionNames, setCollectio
           return newArray;
         })
 
-        setCollection(collectionName);
-        //setIsEditable(false);
+        await setCollection(collectionName);
       } catch (e) {
         console.log(e);
       }
+    } else {
+      alert("hey bestie! \n\ncollection names have to be unique, can't be empty, and can only consists of these characters: \n\u2022alphanumeric character (a-zA-Z0-9)\n\u2022space ( )\n\u2022dash (-)\n\u2022underscore (_)\n\u2022tilde (~)\n\u2022period (.)  \n\nthanks:)");
     }
+
     setIsEditable(false);
   }
 

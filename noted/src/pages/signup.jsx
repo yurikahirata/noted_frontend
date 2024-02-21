@@ -6,38 +6,44 @@ import { useAuth } from '../hooks/useAuth';
 const Signup = ({ setUsername }) => {
   const [thisUsername, setThisUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [taken, setTaken] = useState("");
+  const [taken, setTaken] = useState(""); // Text if username is taken
   const { login } = useAuth();
-  const [isLoading, setIsLoading] = useState("");
+  const [isLoading, setIsLoading] = useState(""); // Text while fetching
 
   async function handleOnClick(e) {
     e.preventDefault();
     const body = { "username": thisUsername, "password": password };
-    setIsLoading("Loading...");
 
-    const result = await fetch(`${process.env.API_URL}/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    if (result.status === 200) {
-      setIsLoading("");
-      setUsername(thisUsername);
+    const regex = new RegExp('^[a-zA-Z0-9-.~\w]*$');
+    if (regex.test(thisUsername)) {
+      setIsLoading("Loading...");
 
-      const folderBody = { "username": thisUsername, "collectionName": "unsorted" };
-      fetch(`${process.env.API_URL}/collections`, {
+      const result = await fetch(`${process.env.API_URL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(folderBody),
+        body: JSON.stringify(body),
       });
 
-      await login(thisUsername);
-    }
-    else {
-      setIsLoading("");
-      setTaken("sorry, that username is taken...");
-    }
+      if (result.status === 200) {
+        setIsLoading("");
+        setUsername(thisUsername);
 
+        const folderBody = { "username": thisUsername, "collectionName": "unsorted" };
+        fetch(`${process.env.API_URL}/collections`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(folderBody),
+        });
+
+        await login(thisUsername);
+      }
+      else {
+        setIsLoading("");
+        setTaken("sorry, that username is taken...");
+      }
+    } else {
+      alert("hey bestie! \n\nusernames can only consists of these characters: \n\u2022alphanumeric character (a-zA-Z0-9)\n\u2022dash (-)\n\u2022underscore (_)\n\u2022tilde (~)\n\u2022period (.) \n\nthanks:)");
+    }
   }
 
   return (
@@ -46,7 +52,7 @@ const Signup = ({ setUsername }) => {
       <p>{isLoading}</p>
       <div>
         <form>
-          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} />
+          <input type="text" placeholder='username' className="user-input" value={thisUsername} onChange={(e) => setThisUsername(e.target.value)} autoFocus />
           <p className="taken-username">{taken}</p>
           <input type="password" placeholder='password' className="user-input" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Link className="a-btn">
