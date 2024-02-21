@@ -17,7 +17,7 @@ const Note = ({ note, notes, setNotes }) => {
 
   function deleteHandleOnClick() {
     try {
-      fetch(`${process.env.API_URL}notes/${id}`, {
+      fetch(`${process.env.API_URL}/notes/${id}`, {
         method: "DELETE"
       });
 
@@ -37,7 +37,7 @@ const Note = ({ note, notes, setNotes }) => {
     } else {
       try {
         const body = { "content": content }
-        fetch(`${process.env.API_URL}notes/${id}`, {
+        fetch(`${process.env.API_URL}/notes/${id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),

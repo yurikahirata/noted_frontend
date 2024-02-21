@@ -1,12 +1,16 @@
 import "../styles/navbar.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from '../hooks/useAuth';
 import Collections from "./collections";
 
-const Navbar = ({ isHome, collections, setCollection, setCollections, username }) => {
+const Navbar = ({ isHome, collections, setCollection, setCollections, username, isCollectionsOpen }) => {
   const { logout } = useAuth();
   const [isFolderClicked, setIsFolderClicked] = useState(false);
+
+  useEffect(() => {
+    isCollectionsOpen ? setIsFolderClicked(true) : null;
+  })
 
   function logoutHandleOnClick(e) {
     e.preventDefault();
@@ -29,7 +33,7 @@ const Navbar = ({ isHome, collections, setCollection, setCollections, username }
         </div>
         <button className="navbar-btn" onClick={logoutHandleOnClick}>↲</button>
       </ul>
-    </nav>
+    </nav >
   )
 }
 

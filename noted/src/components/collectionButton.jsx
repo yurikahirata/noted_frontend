@@ -5,7 +5,7 @@ const CollectionButton = ({ collection, setCollection, isHome }) => {
   const navigate = useNavigate();
 
   function handleOnClick() {
-    (isHome) ? navigate("/notes") : null;
+    (isHome) ? navigate("/notes", { state: { isCollectionsOpened: true } }) : null;
     setCollection(collection["collectionName"]);
   }
 

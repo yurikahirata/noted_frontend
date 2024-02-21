@@ -10,7 +10,7 @@ const NoteContainer = ({ collection, setIsHome, username, notes, setNotes }) => 
     setIsHome(false);
     setIsLoading("Loading...");
     async function fetchNotes() {
-      const notes = await fetch(`${process.env.API_URL}notes/${username}/${collection}`);
+      const notes = await fetch(`${process.env.API_URL}/notes/${username}/${collection}`);
       const parsedNotes = await notes.json();
       setNotes(parsedNotes);
       setIsLoading("");
@@ -22,7 +22,7 @@ const NoteContainer = ({ collection, setIsHome, username, notes, setNotes }) => 
   // Add new note in folder
   async function handleOnClick() {
     const body = { "username": username, "content": "", "collection": collection };
-    const result = await fetch(`${process.env.API_URL}notes/`, {
+    const result = await fetch(`${process.env.API_URL}/notes/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

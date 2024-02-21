@@ -8,7 +8,7 @@ const Home = ({ username, isHome, setIsHome, collections, setCollections, collec
 
   useEffect(() => {
     async function fetchCollections() {
-      const results = await fetch(`${process.env.API_URL}collections/${username}`);
+      const results = await fetch(`${process.env.API_URL}/collections/${username}`);
       const parsedResults = await results.json();
 
       setCollections(parsedResults);
@@ -22,7 +22,7 @@ const Home = ({ username, isHome, setIsHome, collections, setCollections, collec
   function handleOnKeyUp(e) {
     if (e.key === "Enter" || e.keyCode === 13) {
       const body = { username: username, content: content, collection: "unsorted" };
-      fetch(`${process.env.API_URL}notes`, {
+      fetch(`${process.env.API_URL}/notes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -35,7 +35,7 @@ const Home = ({ username, isHome, setIsHome, collections, setCollections, collec
   return (
     <main className="home">
       <p className="app-name">n o t e d .</p>
-      <Navbar isHome={isHome} collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} />
+      <Navbar isHome={isHome} collections={collections} setCollection={setCollection} setCollections={setCollections} username={username} isCollectionsOpen={false} />
       <section className="input-section">
         <input type="text" className="main-input" placeholder="What're your thoughts?" autoFocus value={content} onChange={(e) => setContent(e.target.value)} onKeyUp={handleOnKeyUp} />
       </section >

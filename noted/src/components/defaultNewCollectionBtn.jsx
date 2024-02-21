@@ -3,7 +3,7 @@ import "../styles/collections.css";
 const DefaultNewCollectionBtn = ({ setIsEditable, setCollection }) => {
   function handleOnClick() {
     setIsEditable(true);
-    setCollection("unsorted");
+    //setCollection("unsorted");
   }
 
   return (

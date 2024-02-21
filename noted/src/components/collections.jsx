@@ -6,11 +6,15 @@ import EditableNewCollectionBtn from "./editableNewCollectionBtn";
 
 const Collections = ({ collections, setCollection, setCollections, username, isHome }) => {
   const [isEditable, setIsEditable] = useState(false);
-  const collectionNames = [];
+  const [collectionNames, setCollectionNames] = useState([]);
 
   useEffect(() => {
     for (const collection of collections) {
-      collectionNames.push(collection["collectionName"]);
+      setCollectionNames((prev) => {
+        const newArray = [...prev, collection["collectionName"]];
+        return newArray;
+      })
+      //collectionNames.push(collection["collectionName"]);
     }
   }, [])
 
@@ -20,7 +24,7 @@ const Collections = ({ collections, setCollection, setCollections, username, isH
         <CollectionButton collection={collection} setCollection={setCollection} key={collection["_id"]} isHome={isHome} />
         // <button className="collection" key={collection["_id"]} onClick={handleOnClick}>{collection["collectionName"]}</button>
       ))}
-      {!isEditable ? <DefaultNewCollectionBtn setIsEditable={setIsEditable} setCollection={setCollection} /> : <EditableNewCollectionBtn setIsEditable={setIsEditable} collectionNames={collectionNames} username={username} collections={collections} setCollections={setCollections} />}
+      {!isEditable ? <DefaultNewCollectionBtn setIsEditable={setIsEditable} setCollection={setCollection} /> : <EditableNewCollectionBtn setIsEditable={setIsEditable} collectionNames={collectionNames} setCollectionNames={setCollectionNames} username={username} collections={collections} setCollections={setCollections} setCollection={setCollection} />}
     </div>
   )
 }
