@@ -16,7 +16,12 @@ const NoteContainer = ({ collection, setCollection, collections, setCollections,
 
     async function fetchNotes() {
       try {
-        const notes = await fetch(`${process.env.API_URL}/notes/${username}/${collection}`);
+        const body = { "username": username };
+        const notes = await fetch(`${process.env.API_URL}/notes/username/${collection}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
         const parsedNotes = await notes.json();
         setNotes(parsedNotes);
         setIsLoading("");

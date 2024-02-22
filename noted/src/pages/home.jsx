@@ -6,8 +6,14 @@ const Home = ({ username, isHome, setIsHome, collections, setCollections, setCol
   const [content, setContent] = useState(""); // New note content
 
   useEffect(() => {
+    const body = { "username": username };
+
     async function fetchCollections() {
-      const results = await fetch(`${process.env.API_URL}/collections/${username}`);
+      const results = await fetch(`${process.env.API_URL}/collections/username`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
       const parsedResults = await results.json();
 
       setCollections(parsedResults);
