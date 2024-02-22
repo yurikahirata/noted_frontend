@@ -6,7 +6,6 @@ import DefaultNotesTitle from "./defaultNotesTitle";
 import EditableNotesTitle from "./editableNotesTitle";
 
 const NoteContainer = ({ collection, setCollection, collections, setCollections, setIsHome, username, notes, setNotes }) => {
-  let oldCollectionName;
   const [isLoading, setIsLoading] = useState(""); // Text while fetching
   // const [isTitleEditable, setIsTitleEditable] = useState(false);
   const [collectionId, setCollectionId] = useState("");
@@ -17,7 +16,12 @@ const NoteContainer = ({ collection, setCollection, collections, setCollections,
 
     async function fetchNotes() {
       try {
-        const notes = await fetch(`${process.env.API_URL}/notes/${username}/${collection}`);
+        const body = { "username": username };
+        const notes = await fetch(`${process.env.API_URL}/notes/username/${collection}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
         const parsedNotes = await notes.json();
         setNotes(parsedNotes);
         setIsLoading("");
@@ -35,27 +39,34 @@ const NoteContainer = ({ collection, setCollection, collections, setCollections,
       }
     }
 
-    //oldCollectionName = collection; --> move this to own useEffect that only runs on initial?
+    //oldCollectionName = collection; --> in editable button create state to hold final changing name, pass editHandleOnClick into editable title, call on enter
   }, [collection]);
 
   // Add new note in folder
   async function addNoteHandleOnClick() {
     const body = { "username": username, "content": "", "collection": collection };
 
-    const result = await fetch(`${process.env.API_URL}/notes`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    try {
+      setIsLoading("Loading...");
+      const result = await fetch(`${process.env.API_URL}/notes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
-    const parsedResult = await result.json();
-    const newId = parsedResult["insertedId"];
-    body["_id"] = newId;
+      const parsedResult = await result.json();
+      const newId = parsedResult["insertedId"];
+      body["_id"] = newId;
 
-    setNotes((prev) => {
-      const newArray = [body, ...prev];
-      return newArray;
-    })
+      setNotes((prev) => {
+        const newArray = [body, ...prev];
+        return newArray;
+      })
+      setIsLoading("")
+    } catch (e) {
+      console.log(e);
+    }
+
   }
 
   // async function editTitleHandleOnClick() {
@@ -88,6 +99,7 @@ const NoteContainer = ({ collection, setCollection, collections, setCollections,
   async function deleteCollectionOnClick() {
     if (confirm("fr?")) {
       try {
+        setIsLoading("Loading...");
         fetch(`${process.env.API_URL}/collections/${collectionId}`, {
           method: "DELETE"
         });
@@ -100,9 +112,9 @@ const NoteContainer = ({ collection, setCollection, collections, setCollections,
           const newArray = prev.filter((thisCollection) => thisCollection["collectionName"] != collection);
           return newArray;
         });
+        setIsLoading("")
 
-        const newView = collections[collections.length - 1]["collectionName"];
-        await setCollection(newView);
+        await setCollection("unsorted");
       } catch (e) {
         console.log(e);
       }
