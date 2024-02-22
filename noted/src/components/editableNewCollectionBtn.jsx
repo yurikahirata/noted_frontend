@@ -12,7 +12,7 @@ const EditableNewCollectionBtn = ({ setIsEditable, collectionNames, setCollectio
   }
 
   async function handleOnBlur() {
-    const regex = new RegExp('^[a-zA-Z0-9-.~\w\s]*$');
+    const regex = new RegExp('^[a-zA-Z0-9-.~\w ]*$');
 
     if (!collectionNames.includes(collectionName) && collectionName.length > 0 && regex.test(collectionName)) {
 
