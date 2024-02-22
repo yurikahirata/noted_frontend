@@ -16,6 +16,7 @@ noted. is designed for users who prefer a quick and simple way to jot down notes
 
 Project is created with:
 * React version: 18.2.0
+* Node.js version: 20.11.0
 
 ## Setup
 
