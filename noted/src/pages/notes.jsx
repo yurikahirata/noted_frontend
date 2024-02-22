@@ -10,6 +10,7 @@ const Notes = ({ username, isHome, setIsHome, collections, collection, setCollec
 
   useEffect(() => {
     (location.state && location.state.isCollectionsOpened === true) ? setIsCollectionsOpen(true) : null; // Check if collections was open before navigated
+    setIsHome(false);
   }, [])
 
   return (

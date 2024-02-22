@@ -47,3 +47,15 @@
   background-color: var(--bg-primary);
   margin-bottom: 1em;
 }
+
+.editable-title {
+  font-family: "Quicksand", sans-serif;
+  background-color: var(--bg-primary);
+  font-size: 1.5em;
+  font-weight: 800;
+  padding: 0.3em 0.5em;
+  border: 1px solid var(--outline-primary);
+  border-radius: 10px;
+  margin: 1.5em 0 0.3em 0;
+  text-align: center;
+}
