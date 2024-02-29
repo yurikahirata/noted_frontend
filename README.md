@@ -20,7 +20,7 @@ Project is created with:
 
 ## Setup
 
-This game can be played in browser (https://noted-frontend.onrender.com/) or run locally using npm:
+This app can be used in browser (https://noted-frontend.onrender.com/) or run locally using npm:
 ```
 $ git clone https://github.com/yurikahirata/noted_frontend
 $ cd noted
